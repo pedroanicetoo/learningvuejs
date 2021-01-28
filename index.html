@@ -9,28 +9,40 @@
 <body>
    
   <div id="app">
+    {{nome}}
+  </div>
+  <!-- //faça o HTML abaixo -->
+  <div id="app1">
+    {{ferramenta}}
+  </div>
+  <div id="app2">
     {{instrumento}}
-    <br>
-    {{nomeProduto}}
   </div>
 
   <script>
     
-    new Vue({
+  // Crie uma tag com o id app e inicie uma instância vue
+    const vm = new Vue({
       el: "#app",
       data: {
-        instrumento: "Violão",
-        cor: "vermelho",
-      },
-      computed: {
-        nomeProduto() {
-          setTimeout(() => {
-            console.log('This do Timeout:', this.instrumento);
-          }, 1000);
-          return this.instrumento + ' ' + this.cor
-        }
+        nome: "Pedro"
       }
     })
+
+    const vm1 = new Vue({
+      el: "#app1",
+      data: {
+        ferramenta: "Ferramenta"
+      }
+    })
+
+    const vm2 = new Vue({
+      el: "#app2",
+      data: {
+        instrumento: "Instrumento"
+      }
+    })
+
 
   </script>
 
