@@ -9,22 +9,9 @@
 <body>
    
   <div id="app">
-    <h1>{{titulo}}</h1>
-    <div v-show="comprou" :style="{ background: cor }" >
-      <p>{{data.conteudo}}</p>
-      <p>{{ lado * lado - lado / 100 }}</p>
-      <p>{{ comprou ? 'Sim ele comprou' : 'Não comprou, compre aqui' }}</p>
-      <input type="color" v-model="cor" >
-      {{cor}}
-    </div>
-    <div v-if="comprou">
-      <p>{{data.conteudo}}</p>
-      <p>{{ lado * lado - lado / 100 }}</p>
-      <p>{{ comprou ? 'Sim ele comprou' : 'Não comprou, compre aqui' }}</p>
-      <input type="color" v-model="cor" >
-      {{cor}}
-    </div>
-    <a :href="comprou ? href : ''">{{href}}</a>
+    {{instrumento}}
+    <br>
+    {{nomeProduto}}
   </div>
 
   <script>
@@ -32,14 +19,16 @@
     new Vue({
       el: "#app",
       data: {
-        titulo: "Curso de Vuejs",
-        data: {
-          conteudo: "Esse é o conteúdo"
-        },
-        lado: 5,
-        comprou: true,
-        href: "http://www.origamid.com",
-        cor: "#333"
+        instrumento: "Violão",
+        cor: "vermelho",
+      },
+      computed: {
+        nomeProduto() {
+          setTimeout(() => {
+            console.log('This do Timeout:', this.instrumento);
+          }, 1000);
+          return this.instrumento + ' ' + this.cor
+        }
       }
     })
 
