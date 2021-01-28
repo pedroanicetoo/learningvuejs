@@ -8,70 +8,40 @@
 </head>
 <body>
    
-  <div id="comercio">
-    <p>Bermudas - R$ <span>{{preco}}</span></p>
-    <button @click="total++">Adicionar</button>
-    <button @click="total--">Remover</button><span>{{total}}</span>
-    <br>
-    <p>Total: <span>{{preco * total }}</span></p>
-  </div>
-
-
-  <div>
-    <p>Camisas - R$ <span class="preco"></span></p>
-    <button class="adicionar">Adicionar</button>
-    <button class="remover">Remover</button><span class="total"></span>
-    <br>
-    <p>Total: <span class="precoTotal"></span></p>
+  <div id="app">
+    <h1>{{titulo}}</h1>
+    <div v-show="comprou" :style="{ background: cor }" >
+      <p>{{data.conteudo}}</p>
+      <p>{{ lado * lado - lado / 100 }}</p>
+      <p>{{ comprou ? 'Sim ele comprou' : 'Não comprou, compre aqui' }}</p>
+      <input type="color" v-model="cor" >
+      {{cor}}
+    </div>
+    <div v-if="comprou">
+      <p>{{data.conteudo}}</p>
+      <p>{{ lado * lado - lado / 100 }}</p>
+      <p>{{ comprou ? 'Sim ele comprou' : 'Não comprou, compre aqui' }}</p>
+      <input type="color" v-model="cor" >
+      {{cor}}
+    </div>
+    <a :href="comprou ? href : ''">{{href}}</a>
   </div>
 
   <script>
-
-    const vm = new Vue({
-      el: "#comercio",
+    
+    new Vue({
+      el: "#app",
       data: {
-        preco: 69,
-        total: 0
+        titulo: "Curso de Vuejs",
+        data: {
+          conteudo: "Esse é o conteúdo"
+        },
+        lado: 5,
+        comprou: true,
+        href: "http://www.origamid.com",
+        cor: "#333"
       }
-    });
-
-
-
-    const dados = {
-      preco: 49,
-      total: 0
-    }
-
-    const preco = document.querySelector(".preco");
-    const total = document.querySelector(".total");
-    const precoTotal = document.querySelector(".precoTotal");
-    const adicionar = document.querySelector(".adicionar");
-    const remover = document.querySelector(".remover");
-
-    preco.innerText = dados.preco;
-    total.innerText = dados.total;
-    precoTotal.innerText = dados.preco * dados.total;
-  
-
-    function incrementar() {
-      dados.total++;
-      atualizarUI();
-      console.log(dados.total);
-    }
-
-    function diminuir() {
-      dados.total--;
-      atualizarUI();
-      console.log(dados.total);
-    }
-
-    function atualizarUI() {
-      total.innerText = dados.total;
-      precoTotal.innerText = dados.total * dados.preco;
-    }
-
-    adicionar.addEventListener("click", incrementar);
-    remover.addEventListener("click", diminuir);
+    })
 
   </script>
 
