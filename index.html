@@ -8,26 +8,71 @@
 </head>
 <body>
    
-  <div id="app">
-    {{nome}}, {{idade}}, {{faculdade.possui}}
+  <div id="comercio">
+    <p>Bermudas - R$ <span>{{preco}}</span></p>
+    <button @click="total++">Adicionar</button>
+    <button @click="total--">Remover</button><span>{{total}}</span>
+    <br>
+    <p>Total: <span>{{preco * total }}</span></p>
   </div>
 
 
+  <div>
+    <p>Camisas - R$ <span class="preco"></span></p>
+    <button class="adicionar">Adicionar</button>
+    <button class="remover">Remover</button><span class="total"></span>
+    <br>
+    <p>Total: <span class="precoTotal"></span></p>
+  </div>
+
   <script>
+
     const vm = new Vue({
-      el: "#app",
+      el: "#comercio",
       data: {
-        nome: "Pedro Aniceto",
-        idade: 25,
-        faculdade: {
-          possui: "Sim",
-          curso: "Desing"
-        }
+        preco: 69,
+        total: 0
       }
     });
 
-    vm.nome = "João";
-    console.log(vm);
+
+
+    const dados = {
+      preco: 49,
+      total: 0
+    }
+
+    const preco = document.querySelector(".preco");
+    const total = document.querySelector(".total");
+    const precoTotal = document.querySelector(".precoTotal");
+    const adicionar = document.querySelector(".adicionar");
+    const remover = document.querySelector(".remover");
+
+    preco.innerText = dados.preco;
+    total.innerText = dados.total;
+    precoTotal.innerText = dados.preco * dados.total;
+  
+
+    function incrementar() {
+      dados.total++;
+      atualizarUI();
+      console.log(dados.total);
+    }
+
+    function diminuir() {
+      dados.total--;
+      atualizarUI();
+      console.log(dados.total);
+    }
+
+    function atualizarUI() {
+      total.innerText = dados.total;
+      precoTotal.innerText = dados.total * dados.preco;
+    }
+
+    adicionar.addEventListener("click", incrementar);
+    remover.addEventListener("click", diminuir);
+
   </script>
 
 </body>
