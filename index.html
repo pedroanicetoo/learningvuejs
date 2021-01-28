@@ -9,15 +9,13 @@
 <body>
    
   <div id="app">
-    {{total}}
-    <button @click="incrementar">Incrementar</button>  
-    <button @click="diminuir">Diminuir</button>   
-    <br>
-    {{instrumento}} 
-    <button @click="mudarNome('Violão')">Violão</button>
-    <button @click="mudarNome('Guitarra')">Guitarra</button>
-    <br>
-    <button @click="verEvento">Evento</button>
+    <button @click="puxarAcoes">Puxar Ações</button>
+    
+    {{acoes}}
+
+    <p>latestTime: {{acoes.latestTime}}</p>
+    <p>latestPrice: {{acoes.latestPrice}}</p>
+    <p>companyName: {{acoes.companyName}}</p>
 
   </div>
   
@@ -26,26 +24,16 @@
     const vm = new Vue({
       el: "#app",
       data: {
-        total: 0,
-        instrumento: ""
+        acoes: {},
       },
       methods: {
-        incrementar() {
-          this.total++;
-          this.teste();
-        },
-        diminuir() {
-          this.total--;
-          this.teste();
-        },
-        mudarNome(instrumento) {
-          this.instrumento = instrumento;
-        },
-        verEvento(event) {
-          console.log(event);
-        },
-        teste() {
-          console.log('metodo ativado');
+        puxarAcoes() {
+          fetch("https://sandbox.iexapis.com/stable/stock/SYBT/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c")
+          .then(response => response.json())
+          .then(json => {
+            this.acoes = json
+            console.log(json);
+          })
         }
       }
     })
