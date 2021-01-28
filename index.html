@@ -9,40 +9,46 @@
 <body>
    
   <div id="app">
-    {{nome}}
-  </div>
-  <!-- //faça o HTML abaixo -->
-  <div id="app1">
-    {{ferramenta}}
-  </div>
-  <div id="app2">
-    {{instrumento}}
-  </div>
+    {{total}}
+    <button @click="incrementar">Incrementar</button>  
+    <button @click="diminuir">Diminuir</button>   
+    <br>
+    {{instrumento}} 
+    <button @click="mudarNome('Violão')">Violão</button>
+    <button @click="mudarNome('Guitarra')">Guitarra</button>
+    <br>
+    <button @click="verEvento">Evento</button>
 
+  </div>
+  
   <script>
-    
-  // Crie uma tag com o id app e inicie uma instância vue
+  
     const vm = new Vue({
       el: "#app",
       data: {
-        nome: "Pedro"
+        total: 0,
+        instrumento: ""
+      },
+      methods: {
+        incrementar() {
+          this.total++;
+          this.teste();
+        },
+        diminuir() {
+          this.total--;
+          this.teste();
+        },
+        mudarNome(instrumento) {
+          this.instrumento = instrumento;
+        },
+        verEvento(event) {
+          console.log(event);
+        },
+        teste() {
+          console.log('metodo ativado');
+        }
       }
     })
-
-    const vm1 = new Vue({
-      el: "#app1",
-      data: {
-        ferramenta: "Ferramenta"
-      }
-    })
-
-    const vm2 = new Vue({
-      el: "#app2",
-      data: {
-        instrumento: "Instrumento"
-      }
-    })
-
 
   </script>
 
