@@ -9,35 +9,27 @@
 <body>
    
   <div id="app">
-    <button @click="puxarAcoes">Puxar Ações</button>
-    
-    {{acoes}}
 
-    <p>latestTime: {{acoes.latestTime}}</p>
-    <p>latestPrice: {{acoes.latestPrice}}</p>
-    <p>companyName: {{acoes.companyName}}</p>
+    <a :href="link">link Google</a>
+    <p :class="cor" class="ativo">texto</p>
+
+    <p :class="comprou? 'comprou' : 'naocomprou' " >O cliente comprou?</p>
+
+
+    <p :style="{ color: cor }">Cor</p>
 
   </div>
-  
+
   <script>
-  
     const vm = new Vue({
       el: "#app",
       data: {
-        acoes: {},
-      },
-      methods: {
-        puxarAcoes() {
-          fetch("https://sandbox.iexapis.com/stable/stock/SYBT/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c")
-          .then(response => response.json())
-          .then(json => {
-            this.acoes = json
-            console.log(json);
-          })
-        }
+        link: "www.google.com",
+        cor: 'red',
+        comprou: true,
+        size: 8,
       }
     })
-
   </script>
 
 </body>
