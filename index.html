@@ -9,35 +9,66 @@
 <body>
 
   <div id="app">
-    <button @click.prevent="handleClick">Clique aqui!</button>
-    <button @click.prevent="contador++">add</button>
-    <button @click.prevent="ativo = !ativo">Toggle</button>
-    <p v-if="ativo">Mostrar texto</p>
-    <a href="#interno" @click.prevent="handleClick" >Link Interno</a>
-    <br>
-    <input type="text" @keyup="handleClick">
-    <br>
-    <input type="text" @keyup.enter="handleClick"> //only if press 'enter'
-    <br>
-    <p @mousemove="handleMove">Esse é o mouse x: {{mouse.x}}</p>
+    
+    <ul>
+      <li v-for="item in items"><a :href="item.link" @click.prevent="getData">{{item.name}}</a></li>
+    </ul>
+
+    <h1>Nome: {{current.companyName}}</h1>
+    <h2>Último Preço: {{current.latestPrice}}</h2>
+    <h3>Preço de Mercado: {{current.marketCap}}</h3>
   </div>
+
+<!-- 
+  Utilizando a API https://sandbox.iexapis.com/stable/stock/AAPL/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c
+
+  Adicione um evento de clique a cada a do html acima e previna o comportamento padrão
+
+  Faça o fetch dos dados do href ao click e mostre na interface o companyName, latestPrice, marketCap -->
 
   <script>
     vm = new Vue({
       el: "#app",
       data: {
-        contador: 0,
-        ativo: true,
-        mouse: ""
+        items: [ {
+          name: "Google",
+          link: 'https://sandbox.iexapis.com/stable/stock/AAPL/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c'
+        },
+        {
+          name: "Apple",
+          link: 'https://sandbox.iexapis.com/stable/stock/GOOGL-AF/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c'
+        },
+        {
+          name: "Amazon",
+          link: 'https://sandbox.iexapis.com/stable/stock/AMZO34-BS/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c'
+        },
+        {
+          name: "Ebay",
+          link: 'https://sandbox.iexapis.com/stable/stock/EBAY-MM/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c'
+        },
+        {
+          name: "Paypal",
+          link: 'https://sandbox.iexapis.com/stable/stock/PYPL-AF/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c' 
+        }],
+        current: {
+          companyName: "",
+          latestPrice: 0,
+          marketCap: 0,
+        }
       },
       methods: {
-        handleClick(event) {
-          console.log(event);
-        },
-        handleMove(event) {
-          this.mouse = event
+        getData(event) {
+          url = event.currentTarget.href
+          fetch(url)
+          .then(r => r.json())
+          .then(json => {
+            this.current.companyName = json.companyName;
+            this.current.latestPrice = json.latestPrice;
+            this.current.marketCap = json.marketCap;
+          })
         }
       }
+
     })
   </script>
 
