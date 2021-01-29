@@ -8,30 +8,71 @@
 </head>
 <body>
 
-  <div id="app">
+  <div id="app1">
+    
+    <ul>
+      <li v-for="({nome, populacao}, key) in estados" :key="key+nome">
+        <p>{{nome}}</p>
+        <p>{{populacao}}</p>
+      </li>
+    </ul>
 
-    <div v-html="link">{{link}}</div>
+    <div v-for="n in 10">
+      {{n}}
+    </div>
 
-    <div v-text="fruta">custa R$ 20</div>
+  </div>
 
+  <div id="app2">
+    <h4>Exemplo 2</h4>
+    <ul>
+      <li v-for="item in lista">
+        {{item}}
+      </li>
+    </ul>
 
+    <button @click.prevent="removerItem">Remover</button>
+    
+    <button @click.prevent="modificarItem">Modificar</button>
 
-    <p v-once>Valor inicial: R$ {{ total - gasto }} (v-once // remove a reatividade)</p>
-    <button @click="gasto += 5">Comprar Banana R$ 5</button>
-    <p>Total gasto: R$ {{gasto}}</p>
-    <p>Valor Final: R$ {{ total - gasto }}</p>
   </div>
 
   <script>
-    vm = new Vue({
-      el: "#app",
+    vm1 = new Vue({
+      el: "#app1",
       data: {
-        link: "<a href='google.com'>Google</a>",
-        fruta: "banana",
-        total: 150,
-        gasto: 20
+        estados: {
+          sp: {
+            populacao: "45 milhões",
+            nome: "São Paulo"
+          },
+          mg: {
+            populacao: "21 milhões",
+            nome: "Minas Gerais"
+          },
+          rj: {
+            populacao: "17 milhões",
+            nome: "Rio de Janeiro"
+          }
+        }
       }
     })
+  
+    vm2 = new Vue({
+      el: "#app2",
+      data: {
+        lista: ["item 1", "item 2", "item 3"]
+      },
+      methods: {
+        removerItem() {
+          this.lista.pop();
+        },
+        modificarItem() {
+          this.$set(this.lista, 0, "Banana")
+        }
+      }
+    })
+  
   </script>
 
 </body>
