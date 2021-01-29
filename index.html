@@ -7,29 +7,89 @@
   <title>Vue.js</title>
 </head>
 <body>
-   
+  <style>
+    .red {
+      color: red;
+    }
+    .green {
+      color: green;
+    }
+  </style>
   <div id="app">
-
-    <a :href="link">link Google</a>
-    <p :class="cor" class="ativo">texto</p>
-
-    <p :class="comprou? 'comprou' : 'naocomprou' " >O cliente comprou?</p>
+    <!-- https://sandbox.iexapis.com/stable/stock/AAPL/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c -->
+    <!-- https://sandbox.iexapis.com/stable/stock/GOOGL-AF/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c -->
 
 
-    <p :style="{ color: cor }">Cor</p>
+    <!-- -comparar o marketCap (valor de mercado) entre elas.
+
+    -mostrar o nome das empresas e o valor na interface (companyName e MarketCap).
+
+    -Mude a cor para verde o nome da empresa com maior marketCap e vermelho a com menor -->
+
+    <p :style="{ color: comparaData(google.name)}" >{{google.name}} - <b>{{google.price}}</b></p>
+
+    <p :style="{ color: comparaData(apple.name)}">{{apple.name}} - <b>{{apple.price}}</b></p>
+
+
+
+    Outra forma 
+
+
+    <p :class="google.price > apple.price ? 'green' : 'red'" >{{google.name}} - <b>{{google.price}}</b></p>
+
+    <p :class="google.price < apple.price ? 'green' : 'red'">{{apple.name}} - <b>{{apple.price}}</b></p>
 
   </div>
 
   <script>
-    const vm = new Vue({
+    vm = new Vue({
       el: "#app",
       data: {
-        link: "www.google.com",
-        cor: 'red',
-        comprou: true,
-        size: 8,
+        google: {
+          name: "",
+          price: 0
+        },
+        apple: {
+          name: "",
+          price: 0
+        }
+      },
+      methods: {
+        getDatas() {
+          fetch("https://sandbox.iexapis.com/stable/stock/AAPL/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c")
+            .then(response => response.json())
+            .then(json => {
+              this.apple.name = json.companyName
+              this.apple.price = json.marketCap
+          })
+          fetch("https://sandbox.iexapis.com/stable/stock/GOOGL-AF/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c")
+            .then(response => response.json())
+            .then(json => {
+              this.google.name = json.companyName
+              this.google.price = json.marketCap
+          })
+        },
+        comparaData(name) {
+          switch(name) {
+            case this.google.name:
+              if(this.google.price < this.apple.price) {
+                return 'red'
+              } else {
+                return 'green'
+              }
+            case this.apple.name:
+            if(this.apple.price < this.google.name) {
+                return 'red'
+              } else {
+                return 'green'
+              }
+            default:
+              return 'grey'
+          }
+        }
       }
     })
+    vm.getDatas();
   </script>
 
 </body>
