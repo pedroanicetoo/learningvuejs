@@ -10,37 +10,26 @@
 
   <div id="app">
 
-    <!-- simule a adicão de um produto no carrinho
-    este produto possui estoque de 7 itens
-    (utilize a mesma ideia do contador).
+    <div v-html="link">{{link}}</div>
 
-    Ao atingir 7 itens mostre uma mensagem informando não ser possível adicionar mais do que 7 itens.
+    <div v-text="fruta">custa R$ 20</div>
 
-    remova também o botão de adicionar -->
 
-      <p>Banana {{estoqueBanana}}</p>
-      <button v-show="estoqueBanana > 0" @click="adicionarItem">+</button>
-      <button v-show="carrinho > 0" @click="removerItem">-</button>
-      <p>{{carrinho}}</p>
 
+    <p v-once>Valor inicial: R$ {{ total - gasto }} (v-once // remove a reatividade)</p>
+    <button @click="gasto += 5">Comprar Banana R$ 5</button>
+    <p>Total gasto: R$ {{gasto}}</p>
+    <p>Valor Final: R$ {{ total - gasto }}</p>
   </div>
 
   <script>
     vm = new Vue({
       el: "#app",
       data: {
-        estoqueBanana: 7,
-        carrinho: 0
-      },
-      methods: {
-        adicionarItem() {
-          this.carrinho++;
-          this.estoqueBanana--;
-        },
-        removerItem() {
-          this.carrinho--;
-          this.estoqueBanana++;
-        }
+        link: "<a href='google.com'>Google</a>",
+        fruta: "banana",
+        total: 150,
+        gasto: 20
       }
     })
   </script>
