@@ -7,89 +7,38 @@
   <title>Vue.js</title>
 </head>
 <body>
-  <style>
-    .red {
-      color: red;
-    }
-    .green {
-      color: green;
-    }
-  </style>
+
   <div id="app">
-    <!-- https://sandbox.iexapis.com/stable/stock/AAPL/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c -->
-    <!-- https://sandbox.iexapis.com/stable/stock/GOOGL-AF/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c -->
-
-
-    <!-- -comparar o marketCap (valor de mercado) entre elas.
-
-    -mostrar o nome das empresas e o valor na interface (companyName e MarketCap).
-
-    -Mude a cor para verde o nome da empresa com maior marketCap e vermelho a com menor -->
-
-    <p :style="{ color: comparaData(google.name)}" >{{google.name}} - <b>{{google.price}}</b></p>
-
-    <p :style="{ color: comparaData(apple.name)}">{{apple.name}} - <b>{{apple.price}}</b></p>
-
-
-
-    Outra forma 
-
-
-    <p :class="google.price > apple.price ? 'green' : 'red'" >{{google.name}} - <b>{{google.price}}</b></p>
-
-    <p :class="google.price < apple.price ? 'green' : 'red'">{{apple.name}} - <b>{{apple.price}}</b></p>
-
+    <button @click.prevent="handleClick">Clique aqui!</button>
+    <button @click.prevent="contador++">add</button>
+    <button @click.prevent="ativo = !ativo">Toggle</button>
+    <p v-if="ativo">Mostrar texto</p>
+    <a href="#interno" @click.prevent="handleClick" >Link Interno</a>
+    <br>
+    <input type="text" @keyup="handleClick">
+    <br>
+    <input type="text" @keyup.enter="handleClick"> //only if press 'enter'
+    <br>
+    <p @mousemove="handleMove">Esse é o mouse x: {{mouse.x}}</p>
   </div>
 
   <script>
     vm = new Vue({
       el: "#app",
       data: {
-        google: {
-          name: "",
-          price: 0
-        },
-        apple: {
-          name: "",
-          price: 0
-        }
+        contador: 0,
+        ativo: true,
+        mouse: ""
       },
       methods: {
-        getDatas() {
-          fetch("https://sandbox.iexapis.com/stable/stock/AAPL/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c")
-            .then(response => response.json())
-            .then(json => {
-              this.apple.name = json.companyName
-              this.apple.price = json.marketCap
-          })
-          fetch("https://sandbox.iexapis.com/stable/stock/GOOGL-AF/quote?token=Tpk_13c3e0d9c3be456a9fda4725f18bdc2c")
-            .then(response => response.json())
-            .then(json => {
-              this.google.name = json.companyName
-              this.google.price = json.marketCap
-          })
+        handleClick(event) {
+          console.log(event);
         },
-        comparaData(name) {
-          switch(name) {
-            case this.google.name:
-              if(this.google.price < this.apple.price) {
-                return 'red'
-              } else {
-                return 'green'
-              }
-            case this.apple.name:
-            if(this.apple.price < this.google.name) {
-                return 'red'
-              } else {
-                return 'green'
-              }
-            default:
-              return 'grey'
-          }
+        handleMove(event) {
+          this.mouse = event
         }
       }
     })
-    vm.getDatas();
   </script>
 
 </body>
