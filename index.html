@@ -8,71 +8,67 @@
 </head>
 <body>
 
+  <!-- Utilizando a api:
+  https://viacep.com.br/ws/04538133/json
+  Mostre o cep, logradouro, complemento, bairro, localidade e UTF -->
+
   <div id="app1">
-    
+    <button @click.prevent="puxarCep">Puxar Cep</button>
     <ul>
-      <li v-for="({nome, populacao}, key) in estados" :key="key+nome">
-        <p>{{nome}}</p>
-        <p>{{populacao}}</p>
-      </li>
+      <li v-for="dado, key in local">{{key}}: {{dado}}</li>
     </ul>
-
-    <div v-for="n in 10">
-      {{n}}
-    </div>
-
   </div>
 
+
+  <!-- Use o arquivo json da aula para listar os cursos e as matérias -->
+
+
   <div id="app2">
-    <h4>Exemplo 2</h4>
-    <ul>
-      <li v-for="item in lista">
-        {{item}}
-      </li>
-    </ul>
-
-    <button @click.prevent="removerItem">Remover</button>
+    <button @click="puxarCursos">Puxar Aulas</button>
     
-    <button @click.prevent="modificarItem">Modificar</button>
-
+    <div v-for="curso in cursos" style="float: left;width: 100%;border-radius: 3px;border: 1px solid #ccc;margin: 10px 0;">
+      <h1><a :href="curso.link">{{curso.curso}}</a></h1>
+      <ul>
+        <li v-for="{nome, tempo} in curso.aulas">
+          {{nome}}, {{tempo}}
+        </li>
+      </ul>
+    </div>
   </div>
 
   <script>
     vm1 = new Vue({
       el: "#app1",
       data: {
-        estados: {
-          sp: {
-            populacao: "45 milhões",
-            nome: "São Paulo"
-          },
-          mg: {
-            populacao: "21 milhões",
-            nome: "Minas Gerais"
-          },
-          rj: {
-            populacao: "17 milhões",
-            nome: "Rio de Janeiro"
-          }
+        local: {}
+      },
+      methods: {
+        puxarCep() {
+          fetch("https://viacep.com.br/ws/04538133/json")
+          .then(r => r.json())
+          .then(r => {
+            this.local = r
+          })
         }
       }
     })
-  
+    
     vm2 = new Vue({
       el: "#app2",
       data: {
-        lista: ["item 1", "item 2", "item 3"]
+        cursos: {}
       },
       methods: {
-        removerItem() {
-          this.lista.pop();
-        },
-        modificarItem() {
-          this.$set(this.lista, 0, "Banana")
+        puxarCursos() {
+          fetch('./cursos.json')
+          .then(r => r.json())
+          .then(r => {
+            this.cursos = r;
+          })
         }
       }
     })
-  
+
   </script>
 
 </body>
