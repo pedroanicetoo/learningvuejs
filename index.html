@@ -8,63 +8,58 @@
 </head>
 <body>
 
-  <!-- Utilizando a api:
-  https://viacep.com.br/ws/04538133/json
-  Mostre o cep, logradouro, complemento, bairro, localidade e UTF -->
-
-  <div id="app1">
-    <button @click.prevent="puxarCep">Puxar Cep</button>
+  <div id="app">
     <ul>
-      <li v-for="dado, key in local">{{key}}: {{dado}}</li>
+      <li v-for="carro in carrosAzuis">
+        {{carro.marca}}
+      </li>
     </ul>
-  </div>
-
-
-  <!-- Use o arquivo json da aula para listar os cursos e as matérias -->
-
-
-  <div id="app2">
-    <button @click="puxarCursos">Puxar Aulas</button>
+    <button @click="removerCarro">Remover Carro</button>
     
-    <div v-for="curso in cursos" style="float: left;width: 100%;border-radius: 3px;border: 1px solid #ccc;margin: 10px 0;">
-      <h1><a :href="curso.link">{{curso.curso}}</a></h1>
-      <ul>
-        <li v-for="{nome, tempo} in curso.aulas">
-          {{nome}}, {{tempo}}
-        </li>
-      </ul>
-    </div>
+    <p>{{contador}}</p>
+
+    <button @click="contador++">+</button>
+
   </div>
 
   <script>
-    vm1 = new Vue({
-      el: "#app1",
+
+    vm = new Vue({
+      el: "#app",
       data: {
-        local: {}
+        contador: 0,
+        carros: [
+          {
+            marca: "VW",
+            cor: "Azul"
+          },
+          {
+            marca: "Ford",
+            cor: "Preto"
+          },
+          {
+            marca: "Tesla",
+            cor: "Azul"
+          }
+        ]
       },
-      methods: {
-        puxarCep() {
-          fetch("https://viacep.com.br/ws/04538133/json")
-          .then(r => r.json())
-          .then(r => {
-            this.local = r
-          })
+      computed: {
+        carrosAzuis() {
+          return this.carros.filter(({cor}) => cor === 'Azul')
         }
-      }
-    })
-    
-    vm2 = new Vue({
-      el: "#app2",
-      data: {
-        cursos: {}
       },
       methods: {
-        puxarCursos() {
-          fetch('./cursos.json')
-          .then(r => r.json())
-          .then(r => {
-            this.cursos = r;
-          })
+        removerCarro() {
+          this.carros.pop();
+        }
+      },
+      watch: {
+        contador(valorNovo, valorAntigo) {
+          console.log(valorNovo);
+          console.log(valorAntigo);
+        },
+        carros(valorNovo, valorAntigo) {
+          console.log(valorNovo);
         }
       }
     })
