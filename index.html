@@ -26,20 +26,22 @@
   </select>
 -->
   <div id="app">
-    <select name="paises" id="paises" v-model="current_pais">
-      <option v-for="pais in paises" :value="pais.name">
-        {{pais.name}}
-      </option>
-    </select>
 
-    <p>
-      {{current_pais}}
-      <br>
-      {{current_capital.capital}}
-    </p>
-    <p>
-      {{nomeCompleto}}
-    </p>
+    <p :class="[cor, {ativo: estaAtivo} ]" >TEXTO</p>
+
+    <button @click="estaAtivo=!estaAtivo">CLick</button>
+    
+
+    <a :style="{background: bgColor, fontSize: tamanho + 'px'}">STYLE HIM</a>
+
+
+    <button @click="tamanho++">Aumentar</button>
+    <button @click="tamanho--">Diminuir</button>
+
+    <p :style="estiloBotão">estiloBotão</p>
+
+    {{estiloParagrafo}}
+
   </div>
 
   <script>
@@ -47,36 +49,43 @@
     vm = new Vue({
       el: "#app",
       data: {
-        current_pais: '',
-        current_capital:'',
-        paises: {},
-        nome: 'Pedro',
-        sobrenomes: 'Aniceto'
-      },
-      methods: {
-        getStates() {
-          fetch(`https://restcountries.eu/rest/v2/all`)
-          .then(r => r.json())
-          .then(r => {
-            this.paises = r;
-          });
-        }
+        cor: "verde",
+        estaAtivo: true,
+        bgColor: "blue",
+        tamanho:20,
+        estiloBotão: {
+          background:'tomato',
+          fontSize:"20px",
+          color:'#fff'
+        },
       },
       computed: {
-        nomeCompleto() {
-          return this.nome + ' ' + this.sobrenomes
-        }
-      },
-      watch: {
-        current_pais(valor) {
-          this.current_capital = this.paises.find((pais) => pais.name === valor)
+        estiloParagrafo() {
+          const tamanho = Math.random() * 100;
+          return {
+            fontSize: tamanho + 'px',
+          }
         }
       }
     })
-
-    vm.getStates()
   
   </script>
+
+
+  <style>
+    .verde {
+      color: green;
+    }
+    .vermelho {
+      color: red;
+    }
+    .ativo {
+      background-color: yellow;
+    }
+
+
+
+  </style>
 
 </body>
 </html>
