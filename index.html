@@ -37,7 +37,9 @@
       <br>
       {{current_capital.capital}}
     </p>
-
+    <p>
+      {{nomeCompleto}}
+    </p>
   </div>
 
   <script>
@@ -47,7 +49,9 @@
       data: {
         current_pais: '',
         current_capital:'',
-        paises: {}
+        paises: {},
+        nome: 'Pedro',
+        sobrenomes: 'Aniceto'
       },
       methods: {
         getStates() {
@@ -56,6 +60,11 @@
           .then(r => {
             this.paises = r;
           });
+        }
+      },
+      computed: {
+        nomeCompleto() {
+          return this.nome + ' ' + this.sobrenomes
         }
       },
       watch: {
