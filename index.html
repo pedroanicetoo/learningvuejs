@@ -7,40 +7,20 @@
   <title>Vue.js</title>
 </head>
 <body>
-  <!--
-  Você possui o nome e sobrenome do usuário em data,
-  crie uma propriedade computed que retorne o nome completo
-  
-  Utilize a rest API para puxar as capitais dos paises
-  Use um campo de select, onde o usuário pode selecionar o país.
-  https://restcountries.eu/rest/v2/all
+ 
+  <!-- Crie um botão que troque a orientação da lista, ou seja ao invés de 4 colunas, uma única coluna com 4 linhas.
+  O botão será responsável por trocar para lista e também responsável por reverter esse processo.
+Utilize adição/remoção de classes para atingir este efeito
+A classe column já está criada -->
 
-  Com uma função watch, mude a capital de acordo com o país selecionado:
-
-  Ex de campo select:
-
-  <select name="paises" id="paises" v-model="selecionado">
-    <option v-for="pais in paises" :value="pais.name">
-      {{pais.name}}
-    </option>
-  </select>
--->
   <div id="app">
-
-    <p :class="[cor, {ativo: estaAtivo} ]" >TEXTO</p>
-
-    <button @click="estaAtivo=!estaAtivo">CLick</button>
-    
-
-    <a :style="{background: bgColor, fontSize: tamanho + 'px'}">STYLE HIM</a>
-
-
-    <button @click="tamanho++">Aumentar</button>
-    <button @click="tamanho--">Diminuir</button>
-
-    <p :style="estiloBotão">estiloBotão</p>
-
-    {{estiloParagrafo}}
+    <button @click="colunaAtiva = !colunaAtiva">Mudar Coluna</button>
+    <ul :class="{column: colunaAtiva}" @click="gerarCor">
+      <li :style="{background: bgColor}">Sobre</li>
+      <li :style="{background: bgColor}">Produtos</li>
+      <li :style="{background: bgColor}">Serviços</li>
+      <li :style="{background: bgColor}">Contato</li>
+    </ul>
 
   </div>
 
@@ -49,42 +29,41 @@
     vm = new Vue({
       el: "#app",
       data: {
-        cor: "verde",
-        estaAtivo: true,
-        bgColor: "blue",
-        tamanho:20,
-        estiloBotão: {
-          background:'tomato',
-          fontSize:"20px",
-          color:'#fff'
-        },
+        colunaAtiva: false,
+        bgColor: "#84e"
       },
-      computed: {
-        estiloParagrafo() {
-          const tamanho = Math.random() * 100;
-          return {
-            fontSize: tamanho + 'px',
-          }
+      methods: {
+        gerarCor() {
+          const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+          this.bgColor = color;
         }
       }
+      
     })
   
   </script>
 
-
   <style>
-    .verde {
-      color: green;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: monospace;
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
     }
-    .vermelho {
-      color: red;
+    .column {
+      flex-direction: column;
     }
-    .ativo {
-      background-color: yellow;
+    li {
+      padding: 20px;
+      background: #84e;
+      color: white;
+      border-radius: 4px;
+      margin: 10px;
+      flex: 1;
+      text-align: center;
     }
-
-
-
   </style>
 
 </body>
