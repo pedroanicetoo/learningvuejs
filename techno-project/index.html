@@ -12,6 +12,27 @@
 <body>
     
   <div id="app">
+    <header class="header">
+      <img class="logo" src="./assets/techno.svg" alt="Techno">
+      <div class="carrinho_menu">{{carrinhoTotal | numeroPreco}} | {{carrinho.length}}</div>
+      <ul>
+        <li v-for="(item, index) in carrinho">
+          <p>{{item.nome}}{{index}}</p>
+          <button @click="removerItem(index)">X</button>
+        </li>
+      </ul>
+    </header>
+
+    <section class="produtos">
+      <div v-for="item in produtos" @click="abrirModal(item.id)" class="produto">
+        <img :src="item.img" :alt="produto.name" class="produto_img" />
+        <div class="produto_info">
+          <span class="produto_preco">{{item.preco | numeroPreco}}</span>
+          <h2 class="produto_titulo">{{item.nome | maiusculo }}</h2>
+        </div>
+      </div>
+    </section>
+
 
     <section class="modal" v-if="produto" @click="fecharModal"> 
       <div class="modal_container">
@@ -23,7 +44,10 @@
           <span class="preco">{{produto.preco}}</span>
           <h2 class="modal_titulo">{{produto.nome}}</h2>
           <p>{{produto.descricao}}</p>
-          <button class="modal_btn">Adicionar Item</button>
+          <h1>{{produto.estoque}}</h1>
+          <button v-if="produto.estoque > 0" class="modal_btn" 
+            @click="adicionarItem">Adicionar Item</button>
+            <button v-else class="modal_btn esgotado" disabled >Produto Esgotado</button>
         </div>
         <div class="reviews">
           <h2 class="reviews_subtitulo">Avaliações</h2>
@@ -37,15 +61,6 @@
       </div>
     </section>
 
-    <section class="produtos">
-      <div v-for="item in produtos" @click="abrirModal(item.id)" class="produto">
-        <img :src="item.img" :alt="produto.name" class="produto_img" />
-        <div class="produto_info">
-          <span class="produto_preco">{{item.preco | numeroPreco}}</span>
-          <h2 class="produto_titulo">{{item.nome | maiusculo }}</h2>
-        </div>
-      </div>
-    </section>
   </div>
 
   <script src="./app.js"></script>
