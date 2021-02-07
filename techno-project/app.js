@@ -32,6 +32,7 @@ const vm = new Vue({
           this.produtos = r;
       })
     },
+
     fetchProduto(id) {
       fetch(`./api/produtos/${id}/dados.json`)
         .then(r => r.json())
@@ -39,6 +40,7 @@ const vm = new Vue({
           this.produto = r;
       })
     },
+
     abrirModal(id) {
       this.fetchProduto(id);
       window.scrollTo({
@@ -46,20 +48,35 @@ const vm = new Vue({
         behavior: "smooth"
       })
     },
+
     fecharModal({ target, currentTarget }) {
       if(target === currentTarget) this.produto = false;
     },
+
     adicionarItem() {
       this.produto.estoque--;
       const {id, nome, preco} = this.produto
       console.log(id,nome,preco);
       this.carrinho.push({id, nome, preco});
     },
+
     removerItem(index) {
       this.carrinho.splice(0, 1);
+    },
+
+    checarLocalStorage() {
+      if(window.localStorage.carrinho) {
+        this.carrinho = JSON.parse(window.localStorage.carrinho);
+      }
+    }
+  },
+  watch: {
+    carrinho() {
+      window.localStorage.carrinho = JSON.stringify(this.carrinho);
     }
   },
   created() {
     this.fetchProdutos();
+    this.checarLocalStorage();
   }
 }) 
