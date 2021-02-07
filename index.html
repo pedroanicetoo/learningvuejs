@@ -7,59 +7,43 @@
   <title>Vue.js</title>
 </head>
 <body>
- 
+  
+    <!-- 
+  Crie uma tela com 3 diferentes Componentes.
+
+  1 - Mostre o tempo do dia usando a API:
+  https://www.metaweather.com/api/location/455819/ (Código do Brasília)
+
+  2 - Mostre a relação dolar/real
+  https://api.exchangeratesapi.io/latest?base=USD
+
+  3 - Mostre o valor de mercado da Apple (marketCap)
+  https://api.origamid.dev/stock/aapl/quote
+
+  Crie os componentes em arquivos separados e utilize import/export
+  O componente 1 deve ser registrado globalmente
+  O componente 2 deve ser registrado localmente dentro do componente 3.
+  O componente 3 deve ser registrado localmente da instância Vue.js
+ -->
 
   <div id="app">
-    COMPONENTE GLOBAL
-    <componente-global></componente-global>
-    <br>
-    COMPONENTE LOCAL 1
-    <componente-local></componente-local>
-    <br>
-    COMPONENTE LOCAL 2
-    <componente-local2></componente-local2>
-
+    <tempo-hoje></tempo-hoje>
+    <acao-hoje></acao-hoje>
   </div>
 
-  <script>
+  <script type="module">
+    import TempoHoje from "./TempoHoje.js";
+    import AcaoHoje from "./AcaoHoje.js";
 
-    const ComponenteLocal = {
-      name: "ComponenteLocal",
-      template: `<p>Componente Local</p>`
-    }
+    Vue.component("TempoHoje", TempoHoje);
 
-    const ComponenteLocal2 = {
-      name: "ComponenteLocal",
-      data() {
-        return {
-          contar: 20,
-        }
-      },
-      template: `<div>
-                  <p>Componente Local 2  =====> {{contar}} * 2 = {{contarDobro}}</p>
-                  <p>Segundo {{contar}}</p>
-                  <componente-global></componente-global>
-                </div>
-      `,
-      computed: {
-        contarDobro() {
-          return this.contar * 2;
-        }
-      }
-    }
-
-    Vue.component("ComponenteGlobal", {
-      template: `<p>Isso é Global</p>`
-    })
-
-    vm = new Vue({
+    const vm = new Vue({
       el: "#app",
       components: {
-        ComponenteLocal,
-        ComponenteLocal2
+        AcaoHoje
       }
     })
-  
+
   </script>
 
 
