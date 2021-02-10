@@ -1,99 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="./vue.js"></script>
   <title>Vue.js</title>
 </head>
+
 <body>
-  
-    <!-- 
-  Crie uma tela com 3 diferentes Componentes.
 
-  1 - Mostre o tempo do dia usando a API:
-  https://www.metaweather.com/api/location/455819/ (Código do Brasília)
-
-  2 - Mostre a relação dolar/real
-  https://api.exchangeratesapi.io/latest?base=USD
-
-  3 - Mostre o valor de mercado da Apple (marketCap)
-  https://api.origamid.dev/stock/aapl/quote
-
-  Crie os componentes em arquivos separados e utilize import/export
-  O componente 1 deve ser registrado globalmente
-  O componente 2 deve ser registrado localmente dentro do componente 3.
-  O componente 3 deve ser registrado localmente da instância Vue.js
- -->
 
   <div id="app">
-
-    <lista-produtos :frutas="lista" titulo="Esse é o título"></lista-produtos>
-
+    {{mensagem}}
+    {{totalCliente}}
+    <meu-botao @origamid="mostrarMensagem"></meu-botao>
   </div>
 
-  <script type="module">
 
-    const ItemProduto = {
-      name: "ItemProduto",
-      props: ["nomeFruta", "total"],
-      props: {
-        nomeFruta: String,
-        total: [Number, String],
-        cor: {
-          type: String,
-          required: true,
-        },
-        tamanho: {
-          type: String,
-          default: "Grande"
+  <script type="module">
+    const MeuBotao = {
+      name: "MeuBotao",
+      data() {
+        return {
+          totalCliente: 200
         }
       },
-      template: `
-      <li>
-        <h2>{{nomeFruta}}</h2>
-        Esse é um nome: {{nomeFruta}}
-        {{total + 2}}
-        <br/>
-        {{cor}}
-        <br>
-        {{tamanho}}
-      </li>`
-    }
+      template: `<button @click="handleClick">clique</button>`,
+      methods: {
+        handleClick() {
 
-    const ListaProdutos = {
-      name: "ListaProdutos",
-      props: ["frutas", "titulo"],
-      components: {
-        ItemProduto
+        }
       },
-      template: `
-      <ul>
-        <h1>{{titulo}}</h1>
-        <item-produto 
-          v-for="fruta, index in frutas" 
-          :key="fruta + index" 
-          :nomeFruta="fruta"
-          :total="20"
-          cor="Azul"
-          tamanho="pequeno"
-        ></item-produto>
-      </ul>
-      `,
+      created() {
+        setTimeout(() => {
+          this.$emit("origamid", this.totalCliente)
+        }, 2000)
+      }
     }
 
     const vm = new Vue({
-      el: "#app",
+      el: '#app',
       data: {
-        lista: ["Banana", "Laranja", "uva"]
+        mensagem: '',
+        totalCliente: 0
       },
       components: {
-        ListaProdutos
+        MeuBotao
+      },
+      methods: {
+        mostrarMensagem(mensagem) {
+          this.mensagem = "OCORREU"
+          this.totalCliente = mensagem
+        }
       }
     })
 
   </script>
 
-
 </body>
+
 </html>
