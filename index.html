@@ -12,43 +12,52 @@
 
 
   <div id="app">
-    {{contador}}
-    <meu-botao :contador="contador" @update:contador="contador = $event">
-    </meu-botao>
-    <br>
-    OU
-    <br>
-    {{contador}}
-    <meu-botao :contador="contador" :contador.sync="contador">
-    </meu-botao>
+
+    <componente-um></componente-um>
+    <componente-dois></componente-dois>
+
   </div>
 
 
   <script type="module">
-    const MeuBotao = {
-      name: "MeuBotao",
-      props: ["contador"],
+
+    const EventBus = new Vue();
+
+    const ComponenteUm = {
+      name: "ComponenteUm",
+      template: `<p @click="emitirEvento">Componente 1</p>`,
       data() {
         return {
-          contadorComponente: this.contador
+          mensagem: "Esse é o componente 1"
         }
       },
-      template: `<button @click="incrementar">clique {{contadorComponente}}</button>`,
       methods: {
-        incrementar() {
-          this.contadorComponente++;
-          this.$emit("update:contador", this.contadorComponente)
+        emitirEvento() {
+          EventBus.$emit("meuevento", this.mensagem)
         }
+      }
+    }
+
+    const ComponenteDois = {
+      name: "ComponenteDois",
+      template: `<p>{{mensagem}}</p>`,
+      data() {
+        return {
+          mensagem: "Oi"
+        }
+      },
+      created() {
+        EventBus.$on("meuevento", (event) => {
+          this.mensagem = event;
+        })
       }
     }
 
     const vm = new Vue({
       el: '#app',
-      data: {
-        contador: 0
-      },
       components: {
-        MeuBotao
+        ComponenteUm,
+        ComponenteDois
       }
     })
 
