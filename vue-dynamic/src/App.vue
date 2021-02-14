@@ -1,26 +1,30 @@
 <template>
   <div id="app">
-    <button @click="componentAtivo = 'AulaDescricao'" >Descricao</button>
-    <button @click="componentAtivo = 'AulaDownload'">Download</button>
-    <keep-alive>
-      <component :is="componentAtivo"></component>
+    <button @click="opcao = 'SobreEmpresa'">Sobre</button>
+    <button @click="opcao = 'ServicosEmpresa'">Serviços</button>
+    <button @click="opcao = 'FormularioContato'">Formulário</button>
+    <keep-alive>  
+      <component :is="opcao"></component>
     </keep-alive>
   </div>
 </template>
 
 <script>
-import AulaDescricao from "./components/AulaDescricao.vue";
-import AulaDownload from "./components/AulaDownload.vue";
+import SobreEmpresa from './components/SobreEmpresa.vue';
+import ServicosEmpresa from './components/ServicosEmpresa.vue';
+import FormularioContato from './components/FormularioContato.vue';
+
 
 export default {
   name: "App",
   components: {
-    AulaDescricao,
-    AulaDownload
+    SobreEmpresa,
+    ServicosEmpresa,
+    FormularioContato
   },
   data() {
     return {
-      componentAtivo: "AulaDownload"
+      opcao:""
     }
   }
 };

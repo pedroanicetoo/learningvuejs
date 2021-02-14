@@ -1,12 +1,14 @@
 <template>
   <div>
-    <p>Essa é a aula principal do curso</p>
+    <h1>Sobre a Empresa</h1>
+    <p>Essa é a empresa principal</p>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "AulaDescricao"
+  name: "SobreEmpresa"
 };
 </script>
 
