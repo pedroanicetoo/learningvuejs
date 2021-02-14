@@ -11,16 +11,14 @@
 
 <script>
 import SobreEmpresa from './components/SobreEmpresa.vue';
-import ServicosEmpresa from './components/ServicosEmpresa.vue';
-import FormularioContato from './components/FormularioContato.vue';
-
 
 export default {
   name: "App",
   components: {
     SobreEmpresa,
-    ServicosEmpresa,
-    FormularioContato
+    FormularioContato: function() {
+      return import("./components/FormularioContato.vue");
+    }
   },
   data() {
     return {
