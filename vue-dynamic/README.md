@@ -1,4 +1,4 @@
-# vue-slots
+# vue-dynamic
 
 ## Project setup
 ```
