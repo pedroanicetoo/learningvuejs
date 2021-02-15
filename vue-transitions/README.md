@@ -1,4 +1,4 @@
-# vue-dynamic
+# vue-transitions
 
 ## Project setup
 ```
