@@ -10,11 +10,25 @@
 <script>
 export default {
   props: ["curso"],
-  created() {
-    console.log("esse componente foi criado");
+  methods: {
+    puxarDados() {
+      console.log("puxou dados");
+    }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.puxarDados();
+    });
   },
   beforeRouteUpdate(to, from, next) {
+    this.puxarDados();
     next();
+  },
+  beforeRouteLeave(to, from, next) {
+    const confirmar = confirm("Você deseja sair?");
+    if (confirmar) {
+      next();
+    }
   }
 };
 </script>

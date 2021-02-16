@@ -12,9 +12,7 @@
 <script>
 export default {
   methods: {
-    mostrarRouter() {
-      console.log(this.$route.fullPath);
-    }
+    mostrarRouter() {}
   }
 };
 </script>
