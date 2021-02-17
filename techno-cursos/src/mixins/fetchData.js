@@ -13,7 +13,6 @@ export default {
         .then(r => r.json())
         .then(r => {
           setTimeout(() => {
-            console.log(r);
             this.api = r;
             this.loading = false;
           }, 1500)
