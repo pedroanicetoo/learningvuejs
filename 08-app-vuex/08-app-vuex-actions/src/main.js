@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import store from './store.js'
+import store from './store/index.js'
 
 // Crie 3 componentes : Aluno, Curso e Aulas
 // Aluno e Curso devem estar em App.vue

@@ -13,7 +13,7 @@
         {{livro.nome}}
       </li>
     </ul>
-    {{$store.state.acao}}
+    {{$store.state.acao.acao}}
     <Aluno/>
     <Curso/>
   </div>
@@ -28,7 +28,8 @@ export default {
   name: 'App',
   components: { Aluno, Curso },
   created() {
-    this.$store.dispatch("puxarAcao");
+    console.log(this.$store)
+    this.$store.dispatch("acao/puxarAcao");
   },
   computed: {
     ...mapGetters(["livrosLidos"])

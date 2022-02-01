@@ -1,9 +1,14 @@
 import Vue from "vue"
 import Vuex from "vuex"
+import acao from '@/store/acao.js'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  namespaced: true,
+  modules: {
+    acao
+  },
   state: {
     aulasCompletas: [],
     acao: null,
@@ -31,24 +36,11 @@ export default new Vuex.Store({
         state.aulasCompletas.push(payload)
       }
       console.log(state.aulasCompletas) // Debugg
-    },
-    UPDATE_ACAO(state, payload) {
-      state.acao = payload
     }
   },
   actions: {
     completarAula(context, payload) {
       context.commit("COMPLETAR_AULA", payload)
-    },
-    puxarAcao(context) {
-      fetch("https://api.origamid.dev/stock/aapl/quote")
-      .then(r => r.json())
-      .then(respostaJSON => {
-        context.commit("UPDATE_ACAO", respostaJSON)
-        context.dispatch("completarAula", {
-          nome: "Apple"
-        })
-      })
     }
   }
 })
