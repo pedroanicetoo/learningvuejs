@@ -9,8 +9,7 @@
 </template>
 
 <script>
-
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -32,10 +31,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['COMPLETAR_AULA']),
-    completarAula(item) {
-      this.COMPLETAR_AULA(item)
-    }
+    ...mapActions(['completarAula'])
   }
 }
 </script>
