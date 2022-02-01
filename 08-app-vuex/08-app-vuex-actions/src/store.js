@@ -6,7 +6,24 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     aulasCompletas: [],
-    acao: null
+    acao: null,
+    livros: [
+      {
+        nome: "O senhor dos Anéis",
+        lido: true
+      },
+      {
+        nome: "Harry Potter",
+        lido: true
+      },
+      {
+        nome: "As crônicas de Gelo e Fogo",
+        lido: false
+      }
+    ]
+  },
+  getters: {
+    livrosLidos: state => lido => state.livros.filter(livro => livro.lido === lido)
   },
   mutations: {
     COMPLETAR_AULA(state, payload) {
