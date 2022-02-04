@@ -1,17 +1,30 @@
 <template>
-  <div class="home">
-    <Home msg="Welcome to Your Vue.js App"/>
+  <div>
+    <h1>👍 Compre ou Venda 👎</h1>
+    <ProdutosBuscar/>
+    <ProdutosLista/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Home from '@/components/Home.vue'
+
+import ProdutosBuscar from "@/components/ProdutosBuscar.vue";
+import ProdutosLista from "@/components/ProdutosLista.vue";
 
 export default {
-  name: 'Home',
+  name: 'home',
   components: {
-    Home
+    ProdutosBuscar,
+    ProdutosLista
   }
 }
 </script>
+
+<style scoped>
+  h1 {
+    color: #87f;
+    margin-top: 40px;
+    font-size: 2rem;
+    text-align: center;
+  }
+</style>
