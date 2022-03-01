@@ -1,4 +1,94 @@
 {
+  "transacao": [
+    {
+      "comprador_id": "pedro0077@gmail.com",
+      "vendedor_id": "pedro0077@gmail.com",
+      "produto": {
+        "id": "notebook",
+        "nome": "Notebook",
+        "usuario_id": "pedro0077@gmail.com",
+        "preco": "4999",
+        "vendido": "false",
+        "descricao": "Esse é um novo notebook.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "12345678",
+        "rua": "Rua Ali Perto",
+        "numero": "150",
+        "bairro": "aaaaaaaaaaaaaaaaaaaaa",
+        "cidade": "Goiania",
+        "estado": "GO"
+      },
+      "id": 1
+    },
+    {
+      "comprador_id": "",
+      "vendedor_id": "pedro0077@gmail.com",
+      "produto": {
+        "id": "notebook",
+        "nome": "Notebook",
+        "usuario_id": "pedro0077@gmail.com",
+        "preco": "4999",
+        "vendido": "false",
+        "descricao": "Esse é um novo notebook.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "",
+        "rua": "",
+        "numero": "",
+        "bairro": "",
+        "cidade": "",
+        "estado": ""
+      },
+      "id": 2
+    },
+    {
+      "comprador_id": "teste@testeeeee.com",
+      "vendedor_id": "pedro0077@gmail.com",
+      "produto": {
+        "id": "notebook",
+        "nome": "Notebook",
+        "usuario_id": "pedro0077@gmail.com",
+        "preco": "4999",
+        "vendido": "false",
+        "descricao": "Esse é um novo notebook.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "74883083",
+        "rua": "Rua Ivaí",
+        "numero": "safasf",
+        "bairro": "Alphaville Flamboyant Residencial Araguaia",
+        "cidade": "Goiânia",
+        "estado": "GO"
+      },
+      "id": 3
+    },
+    {
+      "comprador_id": "",
+      "vendedor_id": "pedro0077@gmail.com",
+      "produto": {
+        "id": "notebook",
+        "nome": "Notebook",
+        "usuario_id": "pedro0077@gmail.com",
+        "preco": "4999",
+        "vendido": "false",
+        "descricao": "Esse é um novo notebook.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "",
+        "rua": "",
+        "numero": "",
+        "bairro": "",
+        "cidade": "",
+        "estado": ""
+      },
+      "id": 4
+    }
+  ],
   "usuario": [
     {
       "id": "pedro0077@gmail.com",
@@ -46,6 +136,42 @@
       "bairro": "Sítios de Recreio Mansões do Campus",
       "cidade": "Goiânia",
       "estado": "GO"
+    },
+    {
+      "id": "cvEiMTc",
+      "nome": "asfasfasf",
+      "email": "",
+      "senha": "",
+      "cep": "",
+      "rua": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
+    },
+    {
+      "id": "teste@testeeeee.com",
+      "nome": "wijwiqofjqiwofj",
+      "email": "teste@testeeeee.com",
+      "senha": "123",
+      "cep": "74883083",
+      "rua": "Rua Ivaí",
+      "numero": "safasf",
+      "bairro": "Alphaville Flamboyant Residencial Araguaia",
+      "cidade": "Goiânia",
+      "estado": "GO"
+    },
+    {
+      "id": "GC032ie",
+      "nome": "asafasf",
+      "email": "",
+      "senha": "",
+      "cep": "",
+      "rua": "",
+      "numero": "",
+      "bairro": "",
+      "cidade": "",
+      "estado": ""
     }
   ],
   "produto": [
