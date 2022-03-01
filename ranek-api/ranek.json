@@ -87,6 +87,28 @@
         "estado": ""
       },
       "id": 4
+    },
+    {
+      "comprador_id": "teste@teste.com",
+      "vendedor_id": "pedro0077@gmail.com",
+      "produto": {
+        "id": "notebook",
+        "nome": "Notebook",
+        "usuario_id": "pedro0077@gmail.com",
+        "preco": "4999",
+        "vendido": "false",
+        "descricao": "Esse é um novo notebook.",
+        "fotos": null
+      },
+      "endereco": {
+        "cep": "74691240",
+        "rua": "Rua Frei Caneca",
+        "numero": "124124",
+        "bairro": "Sítios de Recreio Mansões do Campus",
+        "cidade": "Goiânia",
+        "estado": "GO"
+      },
+      "id": 5
     }
   ],
   "usuario": [
