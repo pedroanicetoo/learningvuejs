@@ -1,9 +1,20 @@
 {
   "usuario": [
     {
-      "id": "pedro@origamid.com",
+      "id": "pedro0077@gmail.com",
       "email": "pedro@origamid.com",
       "nome": "Pedro Aniceto",
+      "senha": "123",
+      "rua": "Rua Ali Perto",
+      "cep": "12345678",
+      "numero": "25",
+      "estado": "GO",
+      "cidade": "Goiania"
+    },
+    {
+      "id": "joao@origamid.com",
+      "email": "joao@origamid.com",
+      "nome": "Joao Aniceto",
       "senha": "123",
       "rua": "Rua Ali Perto",
       "cep": "12345678",
