@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Produto from '../views/Produto.vue'
+
 
 Vue.use(VueRouter)
 
@@ -12,6 +14,12 @@ const router = new VueRouter({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: "/produtos/:id",
+      name: "produto",
+      component: Produto,
+      props: true
     }
   ],
   scrollBehavior() {
