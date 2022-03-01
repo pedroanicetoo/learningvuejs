@@ -21,6 +21,30 @@
       "numero": "25",
       "estado": "GO",
       "cidade": "Goiania"
+    },
+    {
+      "id": "maria@origamid.com",
+      "nome": "Maria das neves",
+      "email": "maria@origamid.com",
+      "senha": "123",
+      "cep": "22640-102",
+      "rua": "Avenida das Américas",
+      "numero": "100",
+      "bairro": "Barra da Tijuca",
+      "cidade": "Rio de Janeiro",
+      "estado": "RJ"
+    },
+    {
+      "id": "teste@teste.com",
+      "nome": "teste",
+      "email": "teste@teste.com",
+      "senha": "123",
+      "cep": "74691240",
+      "rua": "Rua Frei Caneca",
+      "numero": "124124",
+      "bairro": "Sítios de Recreio Mansões do Campus",
+      "cidade": "Goiânia",
+      "estado": "GO"
     }
   ],
   "produto": [
