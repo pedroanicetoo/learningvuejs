@@ -58,24 +58,6 @@
       "fotos": null
     },
     {
-      "id": "smartphone",
-      "nome": "Smartphone",
-      "usuario_id": "pedro0077@gmail.com",
-      "preco": "1999",
-      "vendido": "false",
-      "descricao": "Esse é um novo smartphone.",
-      "fotos": null
-    },
-    {
-      "id": "tablet",
-      "nome": "Tablet",
-      "usuario_id": "pedro0077@gmail.com",
-      "preco": "1399",
-      "vendido": "false",
-      "descricao": "Esse é um novo tablet.",
-      "fotos": null
-    },
-    {
       "id": "notebook",
       "nome": "Notebook",
       "usuario_id": "pedro0077@gmail.com",
@@ -94,15 +76,6 @@
       "fotos": null
     },
     {
-      "id": "tablet",
-      "nome": "Tablet",
-      "usuario_id": "pedro0077@gmail.com",
-      "preco": "1399",
-      "vendido": "false",
-      "descricao": "Esse é um novo tablet.",
-      "fotos": null
-    },
-    {
       "id": "notebook",
       "nome": "Notebook",
       "usuario_id": "pedro0077@gmail.com",
@@ -118,15 +91,6 @@
       "preco": "1999",
       "vendido": "false",
       "descricao": "Esse é um novo smartphone.",
-      "fotos": null
-    },
-    {
-      "id": "tablet",
-      "nome": "Tablet",
-      "usuario_id": "pedro0077@gmail.com",
-      "preco": "1399",
-      "vendido": "false",
-      "descricao": "Esse é um novo tablet.",
       "fotos": null
     },
     {
@@ -560,6 +524,14 @@
       "vendido": "false",
       "descricao": "Esse é um novo tablet.",
       "fotos": null
+    },
+    {
+      "nome": "magic",
+      "preco": "24124",
+      "descricao": "cartaaa",
+      "fotos": null,
+      "usuario_id": "pedro0077@gmail.com",
+      "id": "dcK9Cyx"
     }
   ]
 }
