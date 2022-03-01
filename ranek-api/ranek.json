@@ -2,14 +2,15 @@
   "usuario": [
     {
       "id": "pedro0077@gmail.com",
-      "email": "pedro0077@gmail.com",
       "nome": "Pedro Aniceto",
+      "email": "pedro0077@gmail.com",
       "senha": "123",
-      "rua": "Rua Ali Perto",
       "cep": "12345678",
-      "numero": "25",
-      "estado": "GO",
-      "cidade": "Goiania"
+      "rua": "Rua Ali Perto",
+      "numero": "150",
+      "bairro": "aaaaaaaaaaaaaaaaaaaaa",
+      "cidade": "Goiania",
+      "estado": "GO"
     },
     {
       "id": "joao@origamid.com",
